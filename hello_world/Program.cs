@@ -1,23 +1,14 @@
-﻿// declaring a variable and using codesnippets
+﻿// Calculator
+Console.WriteLine("Enter the first number: ");
+int firstNum = int.Parse(Console.ReadLine());
+Console.WriteLine("Enter the second number: ");
+int secondNum = int.Parse(Console.ReadLine());
 
-string name = "Juan";
+Console.WriteLine("The sum of the two numbers is: " + (firstNum + secondNum));
+Console.WriteLine("The difference of the two numbers is: " + (firstNum - secondNum));
+Console.WriteLine("The product of the two numbers is: " + (firstNum * secondNum));
+Console.WriteLine("The quotient of the two numbers is: " + (firstNum / secondNum));
+Console.WriteLine("The remainder of the two numbers is: " + (firstNum % secondNum));
 
-System.Console.WriteLine(name);
-
-name = "David";
-
-System.Console.WriteLine(name);
-
-System.Console.WriteLine("Introduce the first number: ");
-
-int num1 = int.Parse(Console.ReadLine());
-
-System.Console.WriteLine("Introduce the second number: ");
-
-int num2 = int.Parse(Console.ReadLine());
-
-int result = num1 + num2;
-
-System.Console.WriteLine("The result is: " + result); 
 
 
