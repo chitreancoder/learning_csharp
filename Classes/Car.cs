@@ -3,24 +3,34 @@ namespace DefaultNamespace;
 public class Car
 {
 	// member variable
-    private string _model = "";
+	private string _model = "";
 
 	// property
-	public string Model {get => _model; 
-		set{
-		if(string.IsNullOrEmpty(value)){
-		Console.WriteLine("You entered NOTHING!");
-		_model = "DEFAULTVALUE";
+	public string Model
+	{
+		get => _model;
+		set
+		{
+			if (string.IsNullOrEmpty(value))
+			{
+				Console.WriteLine("You entered NOTHING!");
+				_model = "DEFAULTVALUE";
 
-}else {
-_model=value;
-}
-}
-}
-    
+			}
+			else
+			{
+				_model = value;
+			}
+		}
+	}
+
 	public Car(string model)
-    {
-        Model = model;
-        Console.WriteLine("An object of car has been created and the model is" + Model);
-    }
+	{
+		Model = model;
+		Console.WriteLine("An object of car has been created and the model is" + Model);
+	}
+
+	public void Drive() {
+		Console.WriteLine("I´m driving the car " + Model);
+	}
 }
