@@ -16,7 +16,7 @@ foreach (string color in colors)
     Console.WriteLine(color);
 }
  */
-
+/* 
 List<int> nums = new List<int> { 1, 23, 55, 20, 10, 40, 50 };
 
 nums.Sort();
@@ -29,10 +29,6 @@ foreach (int num in nums)
 
 Console.WriteLine();
 
-// The lambda expression is a way to filter the list and return only the even numbers.
-// The find all requires a predicate function.
-// The predicate function is a function that takes a parameter and returns a boolean.
-// And reference to the lambda expression is a function that takes a parameter and returns a boolean.
 List<int> evenNums = nums.FindAll(num => num % 2 == 0);
 
 Console.WriteLine("Even numbers: ");
@@ -51,4 +47,63 @@ if (oddNums)
 else
 {
     Console.WriteLine("No");
+} */
+
+using ListApp;
+
+
+
+List<Product> products = new List<Product> {
+    new Product{Name = "Berries", Price = 2.99},
+    new Product{Name = "Apples", Price = 1.99},
+    new Product{Name = "Bananas", Price = 0.99}
+};
+
+foreach (Product product in products)
+{
+    Console.WriteLine(product.Name + " " + product.Price);
+}
+
+List<Product> cheapProducts = products.FindAll(product => product.Price < 2.00);
+
+Console.WriteLine("Cheap products: ");
+foreach (Product product in cheapProducts)
+{
+    Console.WriteLine(product.Name + " " + product.Price);
+}
+
+Console.WriteLine("Expensive products: ");
+
+List<Product> expensiveProducts = products.Where(product => product.Price > 2.00).ToList();
+
+foreach (Product product in expensiveProducts)
+{
+    Console.WriteLine(product.Name + " " + product.Price);
+}
+
+
+int? myAge = null;
+
+Console.WriteLine(myAge);
+
+if (myAge.HasValue)
+{
+    Console.WriteLine(myAge.Value);
+}
+else
+{
+    Console.WriteLine("My age is not set");
+}
+
+myAge = 25;
+
+Console.WriteLine(myAge);
+
+if (myAge.HasValue)
+{
+    Console.WriteLine(myAge.Value);
+}
+else
+{
+    Console.WriteLine("My age is not set");
 }
