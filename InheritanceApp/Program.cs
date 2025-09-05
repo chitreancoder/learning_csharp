@@ -5,9 +5,11 @@ cat.Meow();
 Dog dog = new Dog();
 dog.Eat();
 dog.Bark();
+dog.MakeSound();
 
 Animal animal = new Animal();
 animal.Eat();
+animal.MakeSound();
 
 public class Animal {
 
@@ -16,14 +18,18 @@ public class Animal {
     private int privateField = 3;
     public void Eat() {
         Console.WriteLine("I am eating");
-        Console.WriteLine(publicField);
-        Console.WriteLine(protectedField);
-        Console.WriteLine(privateField);
+    }
+    public virtual void MakeSound() {
+        Console.WriteLine("I am making a sound");
     }
 }
 
 public class Dog : Animal {
     public void Bark() {
+        Console.WriteLine("I am barking");
+    }
+
+    public override void MakeSound() {
         Console.WriteLine("I am barking");
     }
 
