@@ -1,39 +1,39 @@
-﻿Dog dog = new Dog();
-dog.Bark();
-dog.Hunt();
+﻿Person person = new Person("John", 20);
 
+person.PrintPerson();
 
-abstract class Animal
+Employee employee = new Employee("Jane", 30, "HR");
+employee.PrintEmployee();
+
+public class Person
 {
+    public string Name { get; private set; }
+    public int Age { get; private  set; }
 
-
-    public abstract void Hunt();
-}
-class Dog : Animal
-{
-    public void Bark()
+    public Person(string name, int age)
     {
-        Console.WriteLine("I am barking");
+        Name = name;
+        Age = age;
+        Console.WriteLine("Person created");
     }
 
-
-    public override void Hunt()
+    public void PrintPerson()
     {
-        Console.WriteLine("I am hunting");
+        Console.WriteLine("Name: " + Name + " Age: " + Age);
     }
-
-
 }
 
-class Cat : Animal
+public class Employee : Person
 {
-    public void Meow()
+    public string Department { get; private set; }
+
+    public Employee(string name, int age, string department) : base(name, age)
     {
-        Console.WriteLine("I am meowing");
+        Department = department;
     }
 
-    public override void Hunt()
+    public void PrintEmployee()
     {
-        Console.WriteLine("I am hunting");
+        Console.WriteLine("Name: " + Name + " Age: " + Age + " Department: " + Department);
     }
 }
