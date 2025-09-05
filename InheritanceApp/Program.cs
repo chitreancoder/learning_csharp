@@ -5,10 +5,18 @@ person.PrintPerson();
 Employee employee = new Employee("Jane", 30, "HR");
 employee.PrintEmployee();
 
+//
+//
+/// <summary>
+/// Person class
+/// </summary>
+/// <param name="name">Name of the person</param>
+/// <param name="age">Age of the person</param>
+/// <returns>Person object</returns> 
 public class Person
 {
     public string Name { get; private set; }
-    public int Age { get; private  set; }
+    public int Age { get; private set; }
 
     public Person(string name, int age)
     {
