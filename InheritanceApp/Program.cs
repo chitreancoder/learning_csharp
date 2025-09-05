@@ -1,15 +1,14 @@
-﻿Cat cat = new Cat();
-cat.Eat();
-cat.Meow();
+﻿Animal animal = new Animal();
+animal.Eat();
+animal.MakeSound();
+animal.Sleep();
 
 Dog dog = new Dog();
 dog.Eat();
 dog.Bark();
 dog.MakeSound();
+dog.Sleep();
 
-Animal animal = new Animal();
-animal.Eat();
-animal.MakeSound();
 
 public class Animal {
 
@@ -22,11 +21,20 @@ public class Animal {
     public virtual void MakeSound() {
         Console.WriteLine("I am making a sound");
     }
+
+    public void Sleep(){
+        Console.WriteLine("I am sleeping");
+    }
 }
 
 public class Dog : Animal {
     public void Bark() {
         Console.WriteLine("I am barking");
+    }
+
+    public new void Sleep(){
+        base.Sleep();
+        Console.WriteLine("I am sleeping loudly");
     }
 
     public override void MakeSound() {
