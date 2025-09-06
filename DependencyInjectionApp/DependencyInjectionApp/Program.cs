@@ -1,62 +1,27 @@
-﻿Hammer hammer = new Hammer();
-Saw saw = new Saw();
-Builder builder = new Builder(hammer);
-builder.Saw = saw;
-ScrewDriver screwDriver = new ScrewDriver();
-builder.SetScrewDriver(screwDriver);
-builder.Build();
+﻿
+MultiFuncPinter printer = new MultiFuncPinter();
+printer.Print();
+printer.Scan();
 
-
-public interface ITools
+public interface IPrintable
 {
-    void SetScrewDriver(ScrewDriver screwDriver);
+    void Print();
 }
 
-
-public class ScrewDriver
+public interface IScannable
 {
-    public void Use()
-    {
-        Console.WriteLine("Screwing");
-    }
+    void Scan();
 }
 
-public class Hammer
+public class MultiFuncPinter : IPrintable, IScannable
 {
-    public void Use()
+    public void Print()
     {
-        Console.WriteLine(("Hammering"));
-    }
-}
-
-public class Saw
-{
-    public void Use()
-    {
-        Console.WriteLine("Sawing");
-    }
-}
-
-public class Builder : ITools
-{
-    private ScrewDriver _screwDriver;
-    private Hammer _hammer;
-    public Saw Saw { get; set; }
-
-    public void SetScrewDriver(ScrewDriver screwDriver)
-    {
-        _screwDriver = screwDriver;
+        Console.WriteLine("IScannable.Print()");
     }
 
-    public Builder(Hammer hammer)
+    public void Scan()
     {
-        _hammer = hammer;
-    }
-
-    public void Build()
-    {
-        _hammer.Use();
-        Saw.Use();
-        _screwDriver.Use();
+        Console.WriteLine("Scanning...");
     }
 }
