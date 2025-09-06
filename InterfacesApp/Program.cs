@@ -1,43 +1,41 @@
-﻿Dog dog = new Dog();
-dog.MakeSound();
-dog.Eat("Food");
+﻿IPayment creditCardProcessor = new CreditCardProcessor();
+PaymentService paymentService = new PaymentService(creditCardProcessor);
+paymentService.ProcessOrderPayment(100.0m);
 
-Cat cat = new Cat();
-cat.MakeSound();
-cat.Eat("Essen");
-
-
-public interface IAnimal
+IPayment paypalProcessor = new PaypalProcessor();
+paymentService = new PaymentService(paypalProcessor);
+paymentService.ProcessOrderPayment(20.0m);
+public interface IPayment
 {
-    void MakeSound();
-
-    void Eat(string food);
+    void ProcessPayment(decimal amount);
 }
 
-public class Dog : IAnimal
+public class CreditCardProcessor : IPayment
 {
-    public void MakeSound()
+    public void ProcessPayment(decimal amount)
     {
-        Console.WriteLine("Dog sound");
+        Console.WriteLine("Credit card payment " + amount);
     }
-
-    public void Eat(string food)
-    {
-        Console.WriteLine("Dog food");
-    }
-
-    
 }
 
-public class Cat : IAnimal
+public class PaypalProcessor : IPayment
 {
-    public void MakeSound()
+    public void ProcessPayment(decimal amount)
     {
-        Console.WriteLine("Cat sound");
+        Console.WriteLine("Paypal payment "  + amount); 
+    }
+}
+
+public class PaymentService
+{
+    private readonly IPayment _processor;
+    public PaymentService(IPayment processor)
+    {
+        _processor = processor;
     }
 
-    public void Eat(string food)
+    public void ProcessOrderPayment(decimal amount)
     {
-        Console.WriteLine("Cat food");
+        _processor.ProcessPayment(amount);
     }
 }
