@@ -1,26 +1,48 @@
-﻿
-EventPublisher pub = new EventPublisher();
-EventSubscriber sub = new EventSubscriber();
-pub.OnNotify += sub.OnEventRaised;
-pub.RaiseEvent("Testing event");
+﻿TemperatureMonitor monitor = new TemperatureMonitor();
+TemperatureAlert alert = new TemperatureAlert();
+monitor.OnTemperatureChange += alert.OnTemperatureChange;
 
-public delegate void Notify(string msg);
+monitor.Temperature = 20;
 
-public class EventPublisher
+while (true)
 {
-    public event Notify OnNotify;
+    Console.WriteLine("Please enter the temperature: ", ConsoleColor.Yellow);
+    monitor.Temperature = int.Parse(Console.ReadLine());
+}
 
-    public void RaiseEvent(string msg)
+
+public delegate void TemperatureChangeHandler(string msg);
+
+public class TemperatureMonitor
+{
+    public event TemperatureChangeHandler OnTemperatureChange;
+
+    private int _temperature;
+
+    public int Temperature
     {
-        OnNotify?.Invoke(msg); // Invokes event only if there are susbscribers.
-        
+        get { return _temperature; }
+        set
+        {
+            _temperature = value;
+            if (_temperature > 30)
+            {
+                // Raise event
+                RaiseTemperatureChangedEvent("Temperature is too high.");
+            }
+        }
+    }
+
+    protected virtual void RaiseTemperatureChangedEvent(string msg)
+    {
+        OnTemperatureChange?.Invoke(msg);
     }
 }
 
-public class EventSubscriber
+public class TemperatureAlert
 {
-    public void OnEventRaised(string msg)
+    public void OnTemperatureChange(string msg)
     {
-        Console.WriteLine("Event received: " + msg);
+        Console.WriteLine("Alert: " + msg);
     }
 }
