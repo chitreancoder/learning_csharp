@@ -1,8 +1,7 @@
 ﻿
-Day fr = Day.Mo;
-Day tw = Day.Tu;
 
-Console.WriteLine((string)fr);
-Console.WriteLine(tw);
+DateTime myBirthday =  new DateTime(1998, 08, 29);
+DateTime today = DateTime.Today;
 
-enum Day {Mo, Tu, We};
+int daysSinceMyBirthday = today.Subtract(myBirthday).Days;
+Console.WriteLine(daysSinceMyBirthday);
